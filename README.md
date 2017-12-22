@@ -3,7 +3,7 @@ An AR application helping users visualize fabric pattern on couch model
 
 <br/>
 
-# Demo  <a href="https://youtu.be/d5c_XQDK8m8"> here </a>
+# < Demo  <a href="https://twitter.com/monster_bo1/status/943929683011342336"> here /> </a>
 
 This repo uses React Native, Threejs and ARKit to create a visual experience. 
 
