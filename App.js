@@ -1,12 +1,10 @@
-import Expo, { Asset } from 'expo';
+
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 
-const THREE = require('three');
-global.THREE = THREE;
 require('./js/OBJLoader')
 require('./js/MTLLoader')
-import ExpoTHREE from 'expo-three';
+
 console.disableYellowBox = true;
 
 // import fabric and wood materials
@@ -65,7 +63,6 @@ export default class App extends React.Component {
         >
         
         </Expo.GLView>
-        {/* <Text style={{ fontSize: 30, color: '#ff0000' }}> Button will go here </Text> */}
         <TouchableHighlight onPress={this._onPressButton}><Text>Press this</Text></TouchableHighlight>
       </View>
     ) : <Expo.AppLoading />;
@@ -120,8 +117,6 @@ export default class App extends React.Component {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
     scene.background = ExpoTHREE.createARBackgroundTexture(arSession, renderer);
     
-    // const camera = new THREE.PerspectiveCamera(75, width / height, 0.01, 1000);
-    
     // lights
     const frontLight = new THREE.DirectionalLight(0xffffff, 0.3);
     frontLight.position.set(1, 1, 1);
@@ -133,36 +128,13 @@ export default class App extends React.Component {
 
     const ambLight = new THREE.AmbientLight(0x222222, 0.5);
     scene.add(ambLight);
-
-    // yellow lights
-
-    // const frontLeftLight = new THREE.DirectionalLight(0xFFAB00, 0.1);
-    // frontLeftLight.position.set(0, 3, -3);
-    // scene.add(frontLeftLight);
-
-    // const frontRightLight = new THREE.DirectionalLight(0xFFAB00, 0.1);
-    // frontRightLight.position.set(0, 3, 3);
-    // scene.add(frontRightLight);
-
+    
     // venus material
     const venusMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } )
-
-    // const topLight =  new THREE.PointLight( 0xffffff, 1, 1 );
-    // topLight.position.set(2, 30, 2);
-    // topLight.castShadow = true;
-    // scene.add(topLight);
-
-    // const planeGeometry = new THREE.PlaneGeometry( 50, 50 );
-    // planeGeometry.rotateX( - Math.PI / 2 );
     
     const planeMaterial = new THREE.ShadowMaterial();
     planeMaterial.opacity = 0.5;
     
-    // const plane = new THREE.Mesh( planeGeometry, venusMaterial );
-    // plane.position.y = -1;
-    // plane.receiveShadow = true;
-    // scene.add( plane );
-
     //Create a PointLight and turn on shadows for the light
     var light = new THREE.PointLight( 0xffffff, 1, 50 );
     light.position.set( 0, 30, -30 );
@@ -175,14 +147,6 @@ export default class App extends React.Component {
     light.shadow.camera.near = 0.5;       // default
     light.shadow.camera.far = 500      // default
 
-    //Create a sphere that cast shadows (but does not receive them)
-    // var sphereGeometry = new THREE.SphereBufferGeometry( 5, 32, 32 );
-    // var sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
-    // var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-    // sphere.castShadow = true; //default is false
-    // sphere.receiveShadow = false; //default
-    // scene.add( sphere );
-
     //Create a plane that receives shadows (but does not cast them)
     var planeGeometry = new THREE.PlaneBufferGeometry( 20, 20, 32, 32 );
     planeGeometry.rotateX( - Math.PI / 2 );
@@ -192,8 +156,6 @@ export default class App extends React.Component {
     plane.position.y = -0.4;
     plane.receiveShadow = true;
     scene.add( plane );
-
-
 
     // global size of couch model
     // const model_size = 0.38;
